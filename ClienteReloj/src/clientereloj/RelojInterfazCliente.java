@@ -148,13 +148,13 @@ public class RelojInterfazCliente extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         jtxtNombre.setText(jtxtNombre.getText() + cliente.getNombre());
         new Thread(() -> {
-            while (true) {
-                jlblHora.setText(formato.format(cliente.aumentarTiempo()));
-                try {
+            try {
+                while (true) {
+                    jlblHora.setText(formato.format(cliente.aumentarTiempo()));
                     Thread.sleep(1000);
-                } catch (InterruptedException ex) {
-                    System.out.println(ex.getMessage());
                 }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
         }).start();
     }//GEN-LAST:event_formWindowOpened
@@ -169,7 +169,6 @@ public class RelojInterfazCliente extends javax.swing.JFrame {
             out.println(tiempoCero);
             /*Obtiene el tiempo enviado por el servidor y lo conviere el long*/
             tiempoServidor = Long.parseLong(in.readLine());
-
             tiempoUno = System.currentTimeMillis();
             tiempoFinal = tiempoServidor + (tiempoUno - tiempoCero)/ 2;
 
