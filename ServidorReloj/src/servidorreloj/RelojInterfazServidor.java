@@ -1,12 +1,12 @@
 package servidorreloj;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import util.PanelDibujado;
+
 
 public class RelojInterfazServidor extends javax.swing.JFrame {
 
@@ -25,7 +25,7 @@ public class RelojInterfazServidor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jPanel1 = new PanelDibujado("../img/fondoEspacial.jpg");
         jlblHora = new javax.swing.JLabel();
         jtxtNombre = new javax.swing.JLabel();
 
@@ -36,47 +36,30 @@ public class RelojInterfazServidor extends javax.swing.JFrame {
             }
         });
 
+        jPanel1.setLayout(null);
+
         jlblHora.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jlblHora.setForeground(new java.awt.Color(255, 255, 255));
         jlblHora.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
-        jtxtNombre.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jtxtNombre.setText("SERVIDOR");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(161, 161, 161)
-                        .addComponent(jtxtNombre))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(92, 92, 92)
-                        .addComponent(jlblHora, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(98, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jtxtNombre)
-                .addGap(70, 70, 70)
-                .addComponent(jlblHora, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(135, Short.MAX_VALUE))
-        );
-
+        jPanel1.add(jlblHora);
+        jlblHora.setBounds(80, 129, 240, 146);
         jlblHora.getAccessibleContext().setAccessibleName("jlblHora");
+
+        jtxtNombre.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jtxtNombre.setForeground(new java.awt.Color(255, 255, 255));
+        jtxtNombre.setText("SERVIDOR");
+        jPanel1.add(jtxtNombre);
+        jtxtNombre.setBounds(140, 27, 120, 32);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
 
         pack();
@@ -87,7 +70,6 @@ public class RelojInterfazServidor extends javax.swing.JFrame {
             try {
                 while (true) {
                     jlblHora.setText(formato.format(servidor.cambiarHoraActual()));
-                    Thread.sleep(1000);
                 }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
