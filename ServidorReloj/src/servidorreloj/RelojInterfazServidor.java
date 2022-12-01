@@ -106,7 +106,7 @@ public class RelojInterfazServidor extends javax.swing.JFrame {
                     Socket clienteSocket = serverSocket.accept();
                     PrintWriter out = new PrintWriter(clienteSocket.getOutputStream(), true);
                     /*Escribe su propios milisegundos*/
-                    out.println(System.currentTimeMillis());
+                    out.println(servidor.getHoraActual().getTime());
                 }
             } catch (Exception e) {
             }
@@ -114,6 +114,7 @@ public class RelojInterfazServidor extends javax.swing.JFrame {
     }
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        jlblHora.setText(formato.format(servidor.getHoraActual()));
         actualizandoHora();
         esperandoSolicitud();
     }//GEN-LAST:event_formWindowOpened

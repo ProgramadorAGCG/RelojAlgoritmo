@@ -5,22 +5,24 @@ import java.util.Date;
 
 public class Servidor {
     
-    private long horaActual;
+    private Date horaActual;
     
     public Servidor(){
-        horaActual = System.currentTimeMillis();
+        horaActual = new Date();
     }
 
-    public long getHoraActual() {
+    public Date getHoraActual() {
         return horaActual;
     }
 
-    public void setHoraActual(long horaActual) {
+    public void setHoraActual(Date horaActual) {
         this.horaActual = horaActual;
     }
     
-    public Date cambiarHoraActual(){
-        return new Date(horaActual = System.currentTimeMillis());
+    public Date cambiarHoraActual() throws InterruptedException{
+        this.horaActual.setTime(this.horaActual.getTime() + 1010);
+        Thread.sleep(1000);
+        return this.horaActual;
     }
     
 }

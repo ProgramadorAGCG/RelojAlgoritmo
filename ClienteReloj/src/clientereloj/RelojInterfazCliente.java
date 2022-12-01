@@ -160,21 +160,22 @@ public class RelojInterfazCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void btnActualizarHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarHoraActionPerformed
-        try ( Socket socket = new Socket("192.168.1.38", 9090);  PrintWriter out = new PrintWriter(socket.getOutputStream(), true);  BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));) {
+        try ( Socket socket = new Socket("192.168.1.38", 9090);  
+                PrintWriter out = new PrintWriter(socket.getOutputStream(), true);  
+                BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));) {
             Long tiempoCero, tiempoServidor, tiempoUno, tiempoFinal;
 
             /*System.currentTimeMillis(); imprime los milisegundos hasta la fecha actual*/
             tiempoCero = System.currentTimeMillis();
-            /*Sirve para escribir un objeto y enviarlo*/
-            out.println(tiempoCero);
             /*Obtiene el tiempo enviado por el servidor y lo conviere el long*/
             tiempoServidor = Long.parseLong(in.readLine());
+            /*Obtenemos el tiempo actual luego de terminar el proceso*/
             tiempoUno = System.currentTimeMillis();
+            /*Determinar el tiempo final y adaptarlo al cliente*/
             tiempoFinal = tiempoServidor + (tiempoUno - tiempoCero)/ 2;
 
+            /*Actualizar la hora del cliente*/
             cliente.setHora(new Date(tiempoFinal));
-            jlblHora.setText(formato.format(cliente.getHora()));
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
